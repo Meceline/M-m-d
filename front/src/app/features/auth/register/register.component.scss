@@ -1,0 +1,35 @@
+.flex-template-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: center; // Centre les éléments horizontalement
+    padding-top: 5vh;
+    padding-inline: 1rem;
+    height: 100%;
+  
+    .return-link {
+      align-self: flex-start;
+      margin-bottom: 2rem;
+    }
+  
+    form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: calc(min(70ch, 100vw)); // Limite la largeur maximale à 70 caractères ou 100% de la largeur de la fenêtre
+      padding-inline: 0.75rem;
+      margin-inline: auto;
+      gap: 1.5rem; // Ajoute un espacement entre les éléments du formulaire
+    }
+  
+    h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+  
+    button[type="submit"] {
+      margin-top: 2rem;
+      align-self: center;
+    }
+}
+
+  

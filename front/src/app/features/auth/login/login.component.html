@@ -1,1 +1,21 @@
-<p>login works!</p>
+<main class="flex-template-layout relative">
+    <a routerLink="/" class="return-link">
+        <mat-icon aria-hidden="false" aria-label="retour" fontIcon="arrow_back"></mat-icon>
+    </a>
+
+    <form (ngSubmit)="onSubmit()">
+        <h2>Se connecter</h2>
+
+        <label>E-mail ou nom d'utilisateur</label>
+        <mat-form-field appearance="outline">
+        <input type="text" matInput [formControl]="formControls['text']">
+        </mat-form-field>
+
+        <label>Mot de passe</label>
+        <mat-form-field appearance="outline">
+        <input matInput [formControl]="formControls['password']" >
+        </mat-form-field>
+
+        <button type="submit" [disabled]="formControls['text'].invalid || formControls['password'].invalid" mat-raised-button color="primary">S'inscrire</button>
+    </form>
+</main>

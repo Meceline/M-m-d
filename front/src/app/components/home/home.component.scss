@@ -1,0 +1,35 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* S'assure que le main prend toute la hauteur de la page */
+    text-align: center;
+}
+
+main img {
+    width: 20%;
+    max-width: 50%; /* Pour s'assurer que l'image ne dépasse pas la largeur de l'écran */
+    height: auto;
+    margin-bottom: 20px; /* Espace entre l'image et les boutons */
+}
+main a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    font-size: 16px;
+    text-align: center;
+}
+
+
+
+@media (max-width: 768px) {
+    main img {
+        width: 70%; /* Réduit la taille de l'image sur les écrans plus petits */
+    }
+
+    main a {
+        width: 80%; /* Les boutons prennent plus de place sur les petits écrans */
+    }
+}

@@ -9,7 +9,10 @@ import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
+import { MaterialModule } from '../material.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,12 +20,15 @@ import { RegisterComponent } from './features/auth/register/register.component';
     HomeComponent,
     LayoutComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule,   ReactiveFormsModule,
     BrowserAnimationsModule,
+    MaterialModule,
+    HttpClientModule,
+ 
   ],
   providers: [],
   bootstrap: [AppComponent]
