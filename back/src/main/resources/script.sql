@@ -1,4 +1,4 @@
-CREATE TABLE USERS (
+/*CREATE TABLE USERS (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        username VARCHAR(255) NOT NULL,
                        email VARCHAR(255) NOT NULL,
@@ -57,4 +57,4 @@ INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A4', 'A4 Descri
 INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A5', 'A5 Description.', 1, (SELECT id FROM THEMES WHERE title = 'T5'));
 
 -- Inserting comments
-INSERT INTO COMMENTS(content, user_id, article_id) VALUES('C1', (SELECT id FROM USERS WHERE username = 'test'), (SELECT id FROM ARTICLES WHERE title = 'A5'));
+INSERT INTO COMMENTS(content, user_id, article_id) VALUES('C1', (SELECT id FROM USERS WHERE username = 'test'), (SELECT id FROM ARTICLES WHERE title = 'A5'));*/
