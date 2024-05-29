@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth-service';
@@ -34,10 +34,22 @@ errorMessages: { [key: string]: string } = {
   email: '',
   password: '',
 };
+  registerForm: any;
 
-  constructor(
-    private authService: AuthService, 
-    private router: Router) {}
+  constructor(private fb: FormBuilder,private authService: AuthService, private router: Router) {
+    this.registerForm = this.fb.group({
+      username: ['', [Validators.required, Validators.minLength(2)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}$')
+      ]]
+    });
+  }
+
+
+  
 
   ngOnInit(): void {}
 
@@ -56,7 +68,7 @@ errorMessages: { [key: string]: string } = {
 
   onSubmit(): void {
     console.log("register")
-    if (this.formControls["username"].valid && this.formControls['email'].valid && this.formControls['password'].valid) {
+    // if (this.formControls["username"].valid && this.formControls['email'].valid && this.formControls['password'].valid) {
       const registerRequest: RegisterRequest = {
         username: this.formControls['username'].value,
         email: this.formControls['email'].value,
@@ -64,7 +76,8 @@ errorMessages: { [key: string]: string } = {
       };
       
       this.subscription = this.authService.register(registerRequest).subscribe({
-        next: () => {
+        next: (data) => {
+          console.log(data)
           this.router.navigate(['/home']); // Redirection après succès de l'inscription
         },
         error: (error) => {
@@ -72,7 +85,8 @@ errorMessages: { [key: string]: string } = {
           this.errorMessages['username'] = 'Erreur lors de l\'inscription. Veuillez réessayer.';
         }
       });
-    }}
+    // }
+  }
 
     ngOnDestroy(): void {
       if (this.subscription) {

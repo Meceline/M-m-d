@@ -3,7 +3,7 @@
         <mat-icon aria-hidden="false" aria-label="retour" fontIcon="arrow_back"></mat-icon>
     </a>
 
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="registerForm"(ngSubmit)="onSubmit()">
         <h2>Inscription</h2>
 
         <label>Nom d'utilisateur</label>
@@ -24,7 +24,7 @@
         <mat-error *ngIf="formControls['password'].invalid && formControls['password'].touched">{{errorMessages['password']}}</mat-error>
         </mat-form-field>
 
-        <button type="submit"mat-raised-button color="primary">S'inscrire</button>
+        <button type="submit" mat-raised-button color="primary">S'inscrire</button>
     </form>
 </main>
 
