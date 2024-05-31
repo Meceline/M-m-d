@@ -1,10 +1,10 @@
 package com.openclassrooms.mddapi.models;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
  import com.openclassrooms.mddapi.models.Article;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "THEMES")

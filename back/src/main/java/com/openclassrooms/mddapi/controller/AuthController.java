@@ -3,10 +3,13 @@ package com.openclassrooms.mddapi.controller;
 import com.openclassrooms.mddapi.dto.LoginRequest;
 import com.openclassrooms.mddapi.dto.RegisterRequest;
 import com.openclassrooms.mddapi.models.User;
+import com.openclassrooms.mddapi.service.JWTService;
 import com.openclassrooms.mddapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
@@ -17,6 +20,12 @@ public class AuthController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JWTService jwtService;
+/*    public AuthController(UserService userService, JWTService jwtService) {
+        this.userService = userService;
+        this.jwtService = jwtService;
+    }*/
 
     /*@CrossOrigin(origins = "http://localhost:4200")*/
     @PostMapping("/auth/register")
@@ -24,8 +33,8 @@ public class AuthController {
         try {
             User user = userService.register(registerRequest);
             if (user != null) {
-                /*String token = generateToken(user);*/
-                return ResponseEntity.ok(Collections.singletonMap("token", "token1234 REGISTER"));
+                String token = generateToken(user);
+                return ResponseEntity.ok(Collections.singletonMap("token", token));
             } else {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(Collections.singletonMap("error", "Failed to register user"));
@@ -42,8 +51,8 @@ public class AuthController {
         try {
             User user = userService.login(loginRequest);
             if (user != null) {
-                /*String token = generateToken(user);*/
-                return ResponseEntity.ok(Collections.singletonMap("token", "token1234 LOGIN"));
+                String token = generateToken(user);
+                return ResponseEntity.ok(Collections.singletonMap("token", token));
             } else {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(Collections.singletonMap("error", "authentication failed"));
@@ -55,7 +64,10 @@ public class AuthController {
 
 
 
-
+    private String generateToken(User user) {
+        Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), null);
+        return jwtService.generateToken(authentication, user);
+    }
     private ResponseEntity<?> handleServerError(Exception e) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("error " + e);
     }
