@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth-service';
@@ -13,15 +13,20 @@ import { LoginRequest } from '../interfaces/LoginRequest'; // Import the LoginRe
 export class LoginComponent {
 
   private subscription: Subscription | undefined;
+  loginForm: any;
 
   formControls: { [key: string]: FormControl} = {
     emailOrUsername: new FormControl('',Validators.required),
     password: new FormControl('', Validators.required)
   }
+  
 
-  constructor(
-    private authService: AuthService, 
-    private router: Router) {}
+  constructor(private fb: FormBuilder,private authService: AuthService, private router: Router) {
+    this.loginForm = this.fb.group({
+      emailOrUserName: ['', [Validators.required]],
+      password: ['', [Validators.required]]
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -30,7 +35,7 @@ export class LoginComponent {
     if (this.formControls["emailOrUsername"].valid  && this.formControls['password'].valid) {
       console.log('login');
       const loginRequest: LoginRequest = {
-        emailOrUsername: this.formControls['emailOrUsername'].value,
+        emailOrUserName: this.formControls['emailOrUsername'].value,
         password: this.formControls['password'].value,
       };
   
@@ -43,7 +48,8 @@ export class LoginComponent {
             console.error('Erreur d\'inscription:', error);
           }
         });
-    }}
+     }
+  }
 
     ngOnDestroy(): void {
       if (this.subscription) {

@@ -19,9 +19,9 @@ export class AuthService {
 
   login(loginRequest: LoginRequest): Observable<any> {
     console.log(loginRequest);
-    return this.http.post<any>(`${this.apiUrl}/register`, loginRequest);
+    return this.http.post<any>(`${this.apiUrl}/login`, loginRequest);
   }
 
-  
+
 
 }

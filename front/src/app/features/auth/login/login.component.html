@@ -3,7 +3,7 @@
         <mat-icon aria-hidden="false" aria-label="retour" fontIcon="arrow_back"></mat-icon>
     </a>
 
-    <form (ngSubmit)="onSubmit()">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <h2>Se connecter</h2>
 
         <label>E-mail ou nom d'utilisateur</label>
@@ -13,9 +13,11 @@
 
         <label>Mot de passe</label>
         <mat-form-field appearance="outline">
-        <input matInput [formControl]="formControls['password']" >
+        <input type="password" matInput [formControl]="formControls['password']" >
         </mat-form-field>
 
-        <button type="submit" [disabled]="formControls['emailOrUsername'].invalid || formControls['password'].invalid" mat-raised-button color="primary">S'inscrire</button>
+        <button type="submit"  [disabled]="formControls['emailOrUsername'].invalid || formControls['password'].invalid" mat-raised-button color="primary">S'inscrire</button>
     </form>
 </main>
+
+<p></p>
