@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { MaterialModule } from '../material.module';
 import { HttpClientModule } from '@angular/common/http';
+import { ListComponent as ArticleListComponent} from './features/articles/components/list/list.component';
 
 @NgModule({
   declarations: [
@@ -21,10 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
     LayoutComponent,
     LoginComponent,
     RegisterComponent,
+    ArticleListComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,   ReactiveFormsModule,
+    AppRoutingModule,   
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,

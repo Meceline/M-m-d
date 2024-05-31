@@ -13,8 +13,10 @@ import { RegisterRequest } from '../interfaces/RegisterRequest';
 export class RegisterComponent {
   private subscription: Subscription | undefined;
 
+  registerForm: any;
+
 formControls: { [key: string]: FormControl } = {
-  username: new FormControl('', [Validators.required, Validators.minLength(2)]),
+  userName: new FormControl('', [Validators.required, Validators.minLength(2)]),
   email: new FormControl('', [Validators.email, Validators.required]),
   password: new FormControl('', [
     Validators.required,
@@ -24,21 +26,22 @@ formControls: { [key: string]: FormControl } = {
 };
 
 controlNames: { [key: string]: string } = {
-  username: 'Le nom d\'utilisateur doit avoir au moins 2 caractères',
+  userName: 'Le nom d\'utilisateur doit avoir au moins 2 caractères',
   email: 'L\'adresse mail doit avoir un format valide',
   password: 'Le mot de passe avec au moins 8 caractères, dont 1 lettre majuscule, 1 lettre minuscule, 1 chiffre et 1 caractère spécial',
 };
 
 errorMessages: { [key: string]: string } = {
-  username: '',
+  userName: '',
   email: '',
   password: '',
 };
-  registerForm: any;
+
+  
 
   constructor(private fb: FormBuilder,private authService: AuthService, private router: Router) {
     this.registerForm = this.fb.group({
-      username: ['', [Validators.required, Validators.minLength(2)]],
+      userName: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [
         Validators.required,
@@ -48,11 +51,7 @@ errorMessages: { [key: string]: string } = {
     });
   }
 
-
-  
-
   ngOnInit(): void {}
-
 
   onBlur(controlName: string): void {
     const control = this.formControls[controlName];
@@ -68,30 +67,30 @@ errorMessages: { [key: string]: string } = {
 
   onSubmit(): void {
     console.log("register")
-    // if (this.formControls["username"].valid && this.formControls['email'].valid && this.formControls['password'].valid) {
+     if (this.formControls["userName"].valid && this.formControls['email'].valid && this.formControls['password'].valid) {
       const registerRequest: RegisterRequest = {
-        username: this.formControls['username'].value,
+        userName: this.formControls['userName'].value,
         email: this.formControls['email'].value,
         password: this.formControls['password'].value,
       };
       
       this.subscription = this.authService.register(registerRequest).subscribe({
         next: (data) => {
-          console.log(data)
-          this.router.navigate(['/home']); // Redirection après succès de l'inscription
+          console.log("ok ", data)
+          this.router.navigate(['/articles']); //Article component
         },
         error: (error) => {
           console.error('Erreur d\'inscription:', error);
-          this.errorMessages['username'] = 'Erreur lors de l\'inscription. Veuillez réessayer.';
+          this.errorMessages['userName'] = 'Erreur lors de l\'inscription. Veuillez réessayer.';
         }
       });
-    // }
+     }
   }
 
-    ngOnDestroy(): void {
-      if (this.subscription) {
-      this.subscription.unsubscribe();
-  }
+  ngOnDestroy(): void {
+    if (this.subscription) {
+        this.subscription.unsubscribe();
+    }
   }
 
 }

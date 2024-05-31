@@ -8,7 +8,7 @@
 
         <label>E-mail ou nom d'utilisateur</label>
         <mat-form-field appearance="outline">
-        <input type="text" matInput [formControl]="formControls['text']">
+        <input type="text" matInput [formControl]="formControls['emailOrUsername']">
         </mat-form-field>
 
         <label>Mot de passe</label>
@@ -16,6 +16,6 @@
         <input matInput [formControl]="formControls['password']" >
         </mat-form-field>
 
-        <button type="submit" [disabled]="formControls['text'].invalid || formControls['password'].invalid" mat-raised-button color="primary">S'inscrire</button>
+        <button type="submit" [disabled]="formControls['emailOrUsername'].invalid || formControls['password'].invalid" mat-raised-button color="primary">S'inscrire</button>
     </form>
 </main>
