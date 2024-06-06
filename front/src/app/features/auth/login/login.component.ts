@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth-service';
 import { LoginRequest } from '../interfaces/LoginRequest'; // Import the LoginRequest type
+import { UserService } from '../services/user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -14,6 +15,7 @@ export class LoginComponent {
 
   private subscription: Subscription | undefined;
   loginForm: any;
+  errorMessage: string = "";
 
   formControls: { [key: string]: FormControl} = {
     emailOrUsername: new FormControl('',Validators.required),
@@ -21,7 +23,7 @@ export class LoginComponent {
   }
   
 
-  constructor(private fb: FormBuilder,private authService: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder,private authService: AuthService, public userService: UserService, private router: Router) {
     this.loginForm = this.fb.group({
       emailOrUserName: ['', [Validators.required]],
       password: ['', [Validators.required]]
@@ -38,14 +40,18 @@ export class LoginComponent {
         emailOrUserName: this.formControls['emailOrUsername'].value,
         password: this.formControls['password'].value,
       };
-  
+  console.log(loginRequest);
       this.subscription = this.authService.login(loginRequest).subscribe({
           next: (data) => {
             console.log("ok ", data)
+            localStorage.setItem('token', data.token);
+            this.userService.isLoggedIn();
             this.router.navigate(['/articles']); //Article component
           },
           error: (error) => {
-            console.error('Erreur d\'inscription:', error);
+            console.error('Erreur de connection:', error); 
+            // Afficher un message d'erreur  à l'utilisateur
+            this.errorMessage = error.message;
           }
         });
      }

@@ -9,11 +9,20 @@ import { HomeComponent } from './components/home/home.component';
 import { LayoutComponent } from './components/layout/layout.component';
 import { LoginComponent } from './features/auth/login/login.component';
 import { RegisterComponent } from './features/auth/register/register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 import { MaterialModule } from '../material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ListComponent as ArticleListComponent} from './features/articles/components/list/list.component';
+import { AuthGuard } from './features/auth/guards/auth.guard';
+import { UserService } from './features/auth/services/user-service.service';
+import { JwtInterceptor } from './features/auth/interceptors/jwt.interceptor';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { NewComponent } from './features/articles/components/new/new.component';
+import { DetailsComponent } from './features/articles/components/details/details.component';
+import { ListComponent } from './features/themes/components/list/list.component';
+
 
 @NgModule({
   declarations: [
@@ -23,17 +32,25 @@ import { ListComponent as ArticleListComponent} from './features/articles/compon
     LoginComponent,
     RegisterComponent,
     ArticleListComponent,
+    NavBarComponent,
+    NewComponent,
+    DetailsComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,   
+    FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MaterialModule,
     HttpClientModule,
  
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    AuthGuard, 
+    UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

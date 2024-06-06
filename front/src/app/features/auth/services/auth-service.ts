@@ -13,12 +13,10 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   register(registerRequest: RegisterRequest): Observable<any> {
-    console.log(registerRequest);
     return this.http.post<any>(`${this.apiUrl}/register`, registerRequest);
   }
 
   login(loginRequest: LoginRequest): Observable<any> {
-    console.log(loginRequest);
     return this.http.post<any>(`${this.apiUrl}/login`, loginRequest);
   }
 

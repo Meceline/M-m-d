@@ -1,1 +1,17 @@
-<p>list works!</p>
+<main class="main">  
+    <div class="button-container">
+        <a mat-raised-button color="primary" class="left-button" routerLink="/articles/new">Créer un article</a>
+        <a mat-raised-button color="primary" class="right-button">Triez</a>
+    </div>
+
+    <a *ngFor="let article of articles" [routerLink]="['/articles', article.id]">
+        <mat-card class="card">
+            <mat-card-title><b>{{article.title}}</b></mat-card-title>
+            <div class="subtitle-container">
+                <mat-card-subtitle class="date">{{article.created_at | date}}</mat-card-subtitle>
+                <mat-card-subtitle class="author">{{article.user.username}}</mat-card-subtitle>
+            </div>
+            <mat-card-content>Content : {{truncateText(article.content, 300)}}</mat-card-content>
+        </mat-card>
+    </a>
+</main>
