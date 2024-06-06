@@ -1,4 +1,6 @@
-/*CREATE TABLE USERS (
+/*
+
+CREATE TABLE USERS (
                        id BIGINT PRIMARY KEY AUTO_INCREMENT,
                        username VARCHAR(255) NOT NULL,
                        email VARCHAR(255) NOT NULL,
@@ -6,6 +8,8 @@
                        created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
                        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
+ALTER TABLE USERS ADD CONSTRAINT unique_email UNIQUE (email);
 
 CREATE TABLE THEMES (
                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -39,7 +43,10 @@ CREATE TABLE COMMENTS (
 );
 
 -- Inserting user
-INSERT INTO USERS(username, email, password) VALUES ('test', 'test@test.com', 'testPDN1!');
+INSERT INTO USERS(username, email, password) VALUES ('test', 'test@test.com', '$2a$10$RaLqE/yfn2R/QLopyvJv/.zkVN8T7dcf8X8jYZyRae22l5128KVd.');
+-- mdp : testPDN1!
+
+
 -- Inserting themes
 INSERT INTO THEMES(title, description) VALUES ('T1', 'T1 Description');
 INSERT INTO THEMES(title, description) VALUES ('T2', 'T2 Description');
@@ -50,11 +57,13 @@ INSERT INTO THEMES(title, description) VALUES ('T6', 'T6 Description');
 INSERT INTO THEMES(title, description) VALUES ('T7', 'T7 Description');
 
 -- Inserting articles
-INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A1', 'A1 Description.', 1, (SELECT id FROM THEMES WHERE title = 'T1'));
-INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A1', 'A1 Description.', 1, (SELECT id FROM THEMES WHERE title = 'T1'));
-INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A3', 'A3 Description.', 1, (SELECT id FROM THEMES WHERE title = 'T2'));
-INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A4', 'A4 Description.', 1, (SELECT id FROM THEMES WHERE title = 'T3'));
-INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A5', 'A5 Description.', 1, (SELECT id FROM THEMES WHERE title = 'T5'));
+INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A1', 'A1 Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet leo in est varius tincidunt. Pellentesque egestas, lorem quis feugiat pretium, nisl felis facilisis lectus, a dictum mauris leo nec mi. Nam neque ex, mattis non urna eget, pretium tincidunt nunc. Mauris eget ullamcorper nulla, id imperdiet mauris. Phasellus bibendum molestie interdum. Etiam sed massa non erat elementum varius. Nullam egestas ultrices ligula, at sodales ante efficitur non. Morbi aliquam interdum orci aliquam.', 1, (SELECT id FROM THEMES WHERE title = 'T1'));
+INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A2', 'A1 Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet leo in est varius tincidunt. Pellentesque egestas, lorem quis feugiat pretium, nisl felis facilisis lectus, a dictum mauris leo nec mi. Nam neque ex, mattis non urna eget, pretium tincidunt nunc. Mauris eget ullamcorper nulla, id imperdiet mauris. Phasellus bibendum molestie interdum. Etiam sed massa non erat elementum varius. Nullam egestas ultrices ligula, at sodales ante efficitur non. Morbi aliquam interdum orci aliquam.', 1, (SELECT id FROM THEMES WHERE title = 'T1'));
+INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A3', 'A3 Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet leo in est varius tincidunt. Pellentesque egestas, lorem quis feugiat pretium, nisl felis facilisis lectus, a dictum mauris leo nec mi. Nam neque ex, mattis non urna eget, pretium tincidunt nunc. Mauris eget ullamcorper nulla, id imperdiet mauris. Phasellus bibendum molestie interdum. Etiam sed massa non erat elementum varius. Nullam egestas ultrices ligula, at sodales ante efficitur non. Morbi aliquam interdum orci aliquam.', 1, (SELECT id FROM THEMES WHERE title = 'T2'));
+INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A4', 'A4 Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet leo in est varius tincidunt. Pellentesque egestas, lorem quis feugiat pretium, nisl felis facilisis lectus, a dictum mauris leo nec mi. Nam neque ex, mattis non urna eget, pretium tincidunt nunc. Mauris eget ullamcorper nulla, id imperdiet mauris. Phasellus bibendum molestie interdum. Etiam sed massa non erat elementum varius. Nullam egestas ultrices ligula, at sodales ante efficitur non. Morbi aliquam interdum orci aliquam.', 1, (SELECT id FROM THEMES WHERE title = 'T3'));
+INSERT INTO ARTICLES(title, content, user_id, theme_id) VALUES ('A5', 'A5 Description. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet leo in est varius tincidunt. Pellentesque egestas, lorem quis feugiat pretium, nisl felis facilisis lectus, a dictum mauris leo nec mi. Nam neque ex, mattis non urna eget, pretium tincidunt nunc. Mauris eget ullamcorper nulla, id imperdiet mauris. Phasellus bibendum molestie interdum. Etiam sed massa non erat elementum varius. Nullam egestas ultrices ligula, at sodales ante efficitur non. Morbi aliquam interdum orci aliquam.', 1, (SELECT id FROM THEMES WHERE title = 'T5'));
 
 -- Inserting comments
-INSERT INTO COMMENTS(content, user_id, article_id) VALUES('C1', (SELECT id FROM USERS WHERE username = 'test'), (SELECT id FROM ARTICLES WHERE title = 'A5'));*/
+INSERT INTO COMMENTS(content, user_id, article_id) VALUES('C1', (SELECT id FROM USERS WHERE username = 'test'), (SELECT id FROM ARTICLES WHERE title = 'A5'));
+
+  */

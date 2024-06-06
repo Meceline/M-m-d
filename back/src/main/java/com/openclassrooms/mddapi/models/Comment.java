@@ -16,13 +16,13 @@ public class Comment {
 	@Column(nullable = false)
 	private String content;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "user_id", nullable = false)
 	private User user;
 
-	@ManyToOne
+	/*@OneToMany
 	@JoinColumn(name = "article_id", nullable = false)
-	private Article article;
+	private Article article;*/
 
 	@Column(nullable = false)
 	private Date created_at;
@@ -55,13 +55,13 @@ public class Comment {
 		this.user = user;
 	}
 
-	public Article getArticle() {
+/*	public Article getArticle() {
 		return article;
 	}
 
 	public void setArticle(Article article) {
 		this.article = article;
-	}
+	}*/
 
 	public Date getCreated_at() {
 		return created_at;

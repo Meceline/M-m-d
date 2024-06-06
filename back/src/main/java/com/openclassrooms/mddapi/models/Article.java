@@ -28,9 +28,6 @@ public class Article {
     @JoinColumn(name = "theme_id", nullable = false)
     private Theme theme;
 
-    @OneToMany(mappedBy = "article")
-    private List<Comment> comments = new ArrayList<>();
-
     @Column(nullable = false)
     private Date created_at;
 
@@ -75,14 +72,6 @@ public class Article {
 
     public void setTheme(Theme theme) {
         this.theme = theme;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     public Date getCreated_at() {

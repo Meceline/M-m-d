@@ -22,10 +22,6 @@ public class AuthController {
     private UserService userService;
     @Autowired
     private JWTService jwtService;
-/*    public AuthController(UserService userService, JWTService jwtService) {
-        this.userService = userService;
-        this.jwtService = jwtService;
-    }*/
 
     /*@CrossOrigin(origins = "http://localhost:4200")*/
     @PostMapping("/auth/register")
@@ -47,7 +43,6 @@ public class AuthController {
 
     @PostMapping(value = "/auth/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        System.out.println("l41 " + loginRequest.getPassword() + " " + loginRequest.getEmailOrUserName());
         try {
             User user = userService.login(loginRequest);
             if (user != null) {

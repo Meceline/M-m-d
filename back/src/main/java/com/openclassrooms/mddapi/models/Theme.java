@@ -1,9 +1,6 @@
 package com.openclassrooms.mddapi.models;
 
 import java.util.Date;
-import java.util.ArrayList;
-import java.util.List;
- import com.openclassrooms.mddapi.models.Article;
 import jakarta.persistence.*;
 
 @Entity
@@ -18,9 +15,6 @@ public class Theme {
 
     @Column(nullable = false)
     private String description;
-
-    @OneToMany(mappedBy = "theme")
-    private List<Article> articles = new ArrayList<>();
 
     @Column(nullable = false)
     private Date created_at;
@@ -50,14 +44,6 @@ public class Theme {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<Article> getArticles() {
-        return articles;
-    }
-
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
     }
 
     public Date getCreated_at() {
