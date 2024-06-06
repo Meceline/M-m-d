@@ -1,7 +1,7 @@
 <main class="main">  
     <div class="button-container">
-        <a mat-raised-button color="primary" class="left-button" routerLink="/articles/new">Créer un article</a>
-        <a mat-raised-button color="primary" class="right-button">Triez</a>
+        <a mat-raised-button color="primary" routerLink="/articles/new">Créer un article</a>
+        <p>Triez par <mat-icon aria-hidden="false" fontIcon="arrow_downward"></mat-icon></p>
     </div>
 
     <a *ngFor="let article of articles" [routerLink]="['/articles', article.id]">

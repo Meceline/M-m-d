@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Article } from '../interfaces/article';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,11 @@ export class ArticleService {
 
   constructor(private http: HttpClient) {}
 
-  getAllArticles(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/articles`);
+  getAllArticles(): Observable<Article[]> {
+    return this.http.get<Article[]>(`${this.apiUrl}/articles`);
   }
 
+  getArticleById(id: number): Observable<Article> {
+    return this.http.post<Article>(`${this.apiUrl}/articles/${id}`, {});
+  }
 }

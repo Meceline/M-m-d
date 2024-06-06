@@ -1,1 +1,7 @@
-<p>list works!</p>
+<main class="main">     
+    <mat-card *ngFor="let theme of themes" class="card">
+        <mat-card-title><b>{{theme.title}}</b></mat-card-title>
+        <mat-card-content>Description : {{truncateText(theme.description, 300)}}</mat-card-content>
+        <a mat-raised-button color="primary" (click)="subscribe(theme.id)">S'abonner</a>
+    </mat-card>
+</main>

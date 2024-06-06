@@ -7,7 +7,6 @@ export class JwtInterceptor implements HttpInterceptor {
   constructor() {}
 
   public intercept(request: HttpRequest<any>, next: HttpHandler) {
-    console.log("interceptor")
     if (request.url.includes('/login') || request.url.includes('/register')) {
       return next.handle(request);
     }
@@ -20,7 +19,6 @@ export class JwtInterceptor implements HttpInterceptor {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("intercepted request ", request);
       return next.handle(request);
     } else {
       return throwError(() => new HttpErrorResponse({ status: 401, statusText: 'Vous n\'êtes pas connecté' }));
