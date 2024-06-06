@@ -41,14 +41,11 @@ public class UserService {
 
         Optional<User> userOptional;
 
-        // Try to find by email
         userOptional = userRepository.findByEmail(emailOrUsername);
         if (!userOptional.isPresent()) {
-            // If not found by email, try to find by username
             userOptional = Optional.ofNullable(userRepository.findByUsername(emailOrUsername));
         }
 
-        // If user is found, check the password
         if (userOptional.isPresent()) {
             User user = userOptional.get();
             if (passwordEncoder.matches(rawPassword, user.getPassword())) {
