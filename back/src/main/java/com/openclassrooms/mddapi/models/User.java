@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.models;
 
 import jakarta.persistence.*;
 import java.util.Date;
+
 @Entity
 @Table(name = "USERS", uniqueConstraints = {
         @UniqueConstraint(columnNames = "email")
@@ -15,7 +16,7 @@ public class User {
     @Column(nullable = false)
     private String username;
 
-    @Column(nullable = false, unique = true) //mail unique annotation
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
@@ -26,6 +27,20 @@ public class User {
 
     @Column(nullable = false)
     private Date updated_at;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public Long getId() {
         return id;

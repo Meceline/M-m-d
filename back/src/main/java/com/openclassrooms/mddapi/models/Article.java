@@ -1,5 +1,4 @@
 package com.openclassrooms.mddapi.models;
-
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -20,19 +19,30 @@ public class Article {
     @Column(nullable = false)
     private String content;
 
+
+
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
     @ManyToOne
     @JoinColumn(name = "theme_id", nullable = false)
     private Theme theme;
+    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
+
+
+
+
 
     @Column(nullable = false)
     private Date created_at;
 
     @Column(nullable = false)
     private Date updated_at;
+
+    public List<Comment> getComments() {
+        return comments;
+    }
 
     public Long getId() {
         return id;

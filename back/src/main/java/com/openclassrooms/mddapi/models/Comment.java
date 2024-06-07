@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.models;
 
-
 import jakarta.persistence.*;
 
 import java.util.Date;
@@ -16,13 +15,13 @@ public class Comment {
 	@Column(nullable = false)
 	private String content;
 
-	@OneToOne
-	@JoinColumn(name = "user_id", nullable = false)
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 
-	/*@OneToMany
-	@JoinColumn(name = "article_id", nullable = false)
-	private Article article;*/
+	@ManyToOne
+	@JoinColumn(name = "article_id")
+	private Article article;
 
 	@Column(nullable = false)
 	private Date created_at;
@@ -30,6 +29,10 @@ public class Comment {
 	@Column(nullable = false)
 	private Date updated_at;
 
+
+	public User getUser() {
+		return user;
+	}
 
 	public Long getId() {
 		return id;
@@ -46,22 +49,6 @@ public class Comment {
 	public void setContent(String content) {
 		this.content = content;
 	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-/*	public Article getArticle() {
-		return article;
-	}
-
-	public void setArticle(Article article) {
-		this.article = article;
-	}*/
 
 	public Date getCreated_at() {
 		return created_at;
