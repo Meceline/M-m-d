@@ -18,12 +18,14 @@ export class ListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscription = this.articlesService.getAllArticles().subscribe({
       next: (data: any[]) => {
+        console.log(data)
         this.articles = data.map(item => ({
           id: item.id,
           title: item.title,
           content: item.content,
           user: item.user,
           theme: item.theme,
+          comments: item.comments, // Add the 'comments' property here
           created_at: new Date(item.created_at),
           updated_at: new Date(item.updated_at)
         }));

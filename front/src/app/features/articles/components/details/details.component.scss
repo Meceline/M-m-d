@@ -1,0 +1,151 @@
+main {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 50px;
+}
+.flex-template-layout {
+    display: flex;
+    flex-direction: column;
+}
+
+.return-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    mat-icon {
+        margin-right: 8px; 
+    }
+}
+.article-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    div {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        p{
+            margin: 0 8px;
+        }
+    }
+}
+.comment-container {
+  display: flex;
+  width: 100%;
+  margin: 20px auto;
+  p:nth-child(1){
+    width: 20%;
+  }
+  p:nth-child(2){
+    width: 80%;
+    background-color: gray;
+  }
+}
+mat-divider{
+  margin: 20px 0;
+}
+.content {
+    margin-top: 20px;
+}
+
+.comment-form {
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .comment-field {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .submit-button {
+    background: none;
+    border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .submit-button mat-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  textarea[matInput] {
+    width: 100%;
+    resize: none;
+  }
+  
+  .mat-form-field {
+    width: calc(100% - 48px);
+  }
+  
+  .mat-form-field-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mat-form-field-infix {
+    flex: 1;
+  }
+  
+  .mat-form-field-label-wrapper {
+    position: absolute;
+    top: -24px;
+    left: 0;
+  }
+  
+  .flex-template-layout {
+    display: flex;
+    flex-direction: column;
+  }
+  
+
+  @media (max-width: 600px) {
+    main {
+        margin: 20px;
+    }
+    .article-details {
+        div {
+          display: flex;
+          flex-wrap: wrap;
+            width: 100%;
+            p:nth-child(1), p:nth-child(2){
+              width: 40%;
+            }
+            p:nth-child(3){
+              width: 100%;
+            }
+        }
+    }
+
+    form{
+      position: fixed; 
+    }
+        .comment-form {
+          // flex-direction: column;
+          // align-items: flex-start;
+          padding: 20px 10px;
+          position: fixed; /* Fixe le formulaire en bas de la page */
+          bottom: 0; /* Positionné en bas */
+          width: 100%; /* Occupe toute la largeur */
+        }
+      
+        .comment-field {
+          width: 100%;
+          margin-bottom: 10px;
+        }
+      
+        .submit-button {
+          align-self: flex-end;
+          position: fixed; /* Fixe le formulaire en bas de la page */
+          bottom: 0; /* Positionné en bas */
+          width: 100%;
+        }
+  }

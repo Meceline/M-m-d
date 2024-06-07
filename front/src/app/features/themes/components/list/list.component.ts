@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ArticleService } from 'src/app/features/articles/services/article-service.service';
 import { ThemeService } from '../../services/theme.service';
+import { Theme } from '../../interfaces/theme';
 
 @Component({
   selector: 'app-list',
@@ -12,7 +12,7 @@ import { ThemeService } from '../../services/theme.service';
 export class ListComponent {
 
   private subscription: Subscription | undefined;
-  themes: any;
+  themes: Theme[] = [];
 
   constructor(private themesService: ThemeService, private router: Router) {
     this.subscription = this.themesService.getAllThemes().subscribe({
