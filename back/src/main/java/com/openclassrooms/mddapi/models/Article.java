@@ -27,11 +27,11 @@ public class Article {
     @ManyToOne
     @JoinColumn(name = "theme_id", nullable = false)
     private Theme theme;
-    @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comment> comments = new ArrayList<>();
-
-
-
+  /*  @OneToMany(mappedBy = "article", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();*/
+ /* @ManyToOne
+  @JoinColumn(name = "comment_id", nullable = false)
+  private Comment comment;*/
 
 
     @Column(nullable = false)
@@ -40,9 +40,18 @@ public class Article {
     @Column(nullable = false)
     private Date updated_at;
 
-    public List<Comment> getComments() {
+   /* public List<Comment> getComments() {
         return comments;
+    }*/
+
+
+/*    public Comment getComment() {
+        return comment;
     }
+
+    public void setComment(Comment comment) {
+        this.comment = comment;
+    }*/
 
     public Long getId() {
         return id;

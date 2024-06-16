@@ -1,6 +1,7 @@
 package com.openclassrooms.mddapi.service;
 
 
+import com.openclassrooms.mddapi.dto.UserResponse;
 import com.openclassrooms.mddapi.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -37,7 +38,7 @@ public class JWTService {
         return this.jwtEncoder.encode(jwtEncoderParameters).getTokenValue();
     }
 
-   /* public UserResponse getUser(Jwt principal){
+    public UserResponse getUser(Jwt principal){
         Jwt jwt = (Jwt) principal;
         // extraction des claims de l'utilisateur depuis le token JWT
         Long id = jwt.getClaim("id");
@@ -48,9 +49,9 @@ public class JWTService {
         UserResponse userResponse = new UserResponse();
         userResponse.setId(id);
         userResponse.setEmail(u.getEmail());
-        userResponse.setName(u.getName());
+        userResponse.setUsername(u.getUsername());
         userResponse.setCreated_at(u.getCreated_at());
         userResponse.setUpdated_at(u.getUpdated_at());
         return userResponse;
-    }*/
+    }
 }

@@ -1,6 +1,8 @@
 package com.openclassrooms.mddapi.models;
 
 import java.util.Date;
+import java.util.List;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -22,6 +24,16 @@ public class Theme {
     @Column(nullable = false)
     private Date updated_at;
 
+    @ManyToMany(mappedBy = "themes")
+    private List<User> users;
+
+
+    public List<User> getUsers() {
+        return users;
+    }
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
     public Long getId() {
         return id;
     }

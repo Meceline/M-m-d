@@ -2,6 +2,7 @@ package com.openclassrooms.mddapi.models;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "USERS", uniqueConstraints = {
@@ -28,20 +29,22 @@ public class User {
     @Column(nullable = false)
     private Date updated_at;
 
+    @ManyToMany
+    @JoinTable(
+            name = "user_theme",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "theme_id")
+    )
+
+    private List<Theme> themes;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    public List<Theme> getThemes() {
+        return themes;
+    }
+    public void setThemes(List<Theme> themes) {
+        this.themes = themes;
+    }
     public Long getId() {
         return id;
     }

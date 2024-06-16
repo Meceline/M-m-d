@@ -1,5 +1,7 @@
 package com.openclassrooms.mddapi.controller;
 
+import com.openclassrooms.mddapi.dto.ArticleDTO;
+import com.openclassrooms.mddapi.dto.UserResponse;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Collections;
 import java.util.Optional;
 
 @RestController
@@ -40,12 +42,17 @@ public class ArticleController {
         }
     }
 
-
-
-
-
-
-
+@PostMapping("/articles/new")
+public ResponseEntity<?> createArticle(@RequestBody ArticleDTO articleDTO) {
+    try {
+        articleService.addArticle(articleDTO.getThemeId(), articleDTO.getTitle(), articleDTO.getContent());
+        return ResponseEntity.ok(Collections.singletonMap("message", "Article created!"));
+    } catch (IllegalArgumentException e) {
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }  catch (Exception e) {
+        return handleServerError(e);
+    }
+}
 
 
 

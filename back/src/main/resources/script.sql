@@ -9,7 +9,12 @@ CREATE TABLE USERS (
                        updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-ALTER TABLE USERS ADD CONSTRAINT unique_email UNIQUE (email);
+-- Modifier la taille de la colonne email
+ALTER TABLE USERS MODIFY email VARCHAR(255);
+
+-- Ajouter la contrainte unique avec une longueur spécifique
+ALTER TABLE USERS ADD CONSTRAINT unique_email UNIQUE (email(191));
+
 
 CREATE TABLE THEMES (
                         id BIGINT PRIMARY KEY AUTO_INCREMENT,
@@ -40,6 +45,14 @@ CREATE TABLE COMMENTS (
                           updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
                           FOREIGN KEY (user_id) REFERENCES USERS(id),
                           FOREIGN KEY (article_id) REFERENCES ARTICLES(id)
+);
+
+CREATE TABLE user_theme (
+    user_id BIGINT NOT NULL,
+    theme_id BIGINT NOT NULL,
+    PRIMARY KEY (user_id, theme_id),
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (theme_id) REFERENCES themes(id)
 );
 
 -- Inserting user

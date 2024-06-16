@@ -5,7 +5,10 @@ import org.springframework.stereotype.Repository;
 
 import com.openclassrooms.mddapi.models.Comment;
 
+import java.util.List;
+
 @Repository
 public interface CommentRepository extends JpaRepository<Comment, Long> {
 
+   List<Comment> findAllByArticleId(Long id);
 }

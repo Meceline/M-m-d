@@ -2,8 +2,12 @@ package com.openclassrooms.mddapi.service;
 
 import com.openclassrooms.mddapi.dto.LoginRequest;
 import com.openclassrooms.mddapi.dto.RegisterRequest;
+import com.openclassrooms.mddapi.dto.UserResponse;
+import com.openclassrooms.mddapi.models.Theme;
 import com.openclassrooms.mddapi.models.User;
+import com.openclassrooms.mddapi.repository.ThemeRepository;
 import com.openclassrooms.mddapi.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +23,10 @@ public class UserService {
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired
+    private ThemeRepository themeRepository;
+
 
     public User register(RegisterRequest registerRequest) {
         User user = new User();
@@ -56,6 +64,24 @@ public class UserService {
         } else {
             throw new RuntimeException("Invalid email/username or password!");
         }
+    }
+
+    public UserResponse subscribeTheme(Long themeId, UserResponse userResponse) {
+        User user = userRepository.findById(userResponse.getId())
+                .orElseThrow(() -> new EntityNotFoundException("User not found"));
+        Theme theme = themeRepository.findById(themeId)
+                .orElseThrow(() -> new EntityNotFoundException("Theme not found"));
+
+        user.getThemes().add(theme);
+        userRepository.save(user);
+
+        userResponse.setId(user.getId());
+        return userResponse;
+    }
+
+
+    public User getUserById(Long id){
+        return userRepository.findById(id).get();
     }
 
 }
