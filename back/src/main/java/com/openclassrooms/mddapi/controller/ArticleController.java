@@ -44,6 +44,7 @@ public class ArticleController {
 
 @PostMapping("/articles/new")
 public ResponseEntity<?> createArticle(@RequestBody ArticleDTO articleDTO) {
+        System.out.println(articleDTO.getThemeId() + " - " + articleDTO.getTitle() + " - " + articleDTO.getContent());
     try {
         articleService.addArticle(articleDTO.getThemeId(), articleDTO.getTitle(), articleDTO.getContent());
         return ResponseEntity.ok(Collections.singletonMap("message", "Article created!"));

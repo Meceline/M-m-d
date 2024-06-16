@@ -1,6 +1,5 @@
 package com.openclassrooms.mddapi.service;
 
-import com.openclassrooms.mddapi.dto.ArticleDTO;
 import com.openclassrooms.mddapi.dto.UserResponse;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.models.Theme;
@@ -12,11 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.core.Authentication;
-import com.openclassrooms.mddapi.models.User;
 
-import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Optional;
 
 @Service

@@ -1,5 +1,6 @@
 package com.openclassrooms.mddapi.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +36,7 @@ public class User {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "theme_id")
     )
-
+    @JsonManagedReference
     private List<Theme> themes;
 
 
