@@ -1,4 +1,5 @@
-<main class="flex-template-layout relative">
+
+ <main class="flex-template-layout relative">
     <a routerLink="/articles" class="return-link">
         <div class="header-container">
             <mat-icon aria-hidden="false" aria-label="retour" fontIcon="arrow_back"></mat-icon>
@@ -6,7 +7,7 @@
         </div>
     </a>
    
-    <div  *ngIf="article">
+    <div *ngIf="article">
         <div class="article-details">
             <div>
                 <p><strong>Date:</strong> {{ article.created_at | date }}</p>
@@ -15,15 +16,15 @@
             </div>
         </div>
 
-        <div *ngIf="article" class="content">
+        <div class="content">
             <p>{{ article.content }}</p>
         </div>
 
         <mat-divider></mat-divider>
         
-        <div *ngIf="article.comments && article.comments.length > 0 && article">
+        <div *ngIf="comments && comments.length > 0">
             <p>Commentaires</p>
-            <div *ngFor="let item of article.comments" class="comment-container">
+            <div *ngFor="let item of comments" class="comment-container">
                 <p>{{ item.user.username }}</p>
                 <p>{{ item.content }}</p>
             </div>
@@ -39,5 +40,5 @@
         <button type="submit" class="submit-button" [disabled]="formControls['content'].invalid">
           <mat-icon aria-hidden="false" aria-label="envoyer" fontIcon="send" color="primary"></mat-icon>
         </button>
-      </form>
+    </form>
 </main>

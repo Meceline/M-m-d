@@ -2,6 +2,7 @@
     <mat-card *ngFor="let theme of themes" class="card">
         <mat-card-title><b>{{theme.title}}</b></mat-card-title>
         <mat-card-content>Description : {{truncateText(theme.description, 300)}}</mat-card-content>
-        <a mat-raised-button color="primary" (click)="subscribe(theme.id)">S'abonner</a>
+        <a mat-raised-button color="primary" *ngIf="!subscribedThemes.has(theme.id)" (click)="subscribe(theme.id)">S'abonner</a>
+        <a mat-raised-button color="primary" *ngIf="subscribedThemes.has(theme.id)" (click)="unsubscribe(theme.id)">Se désabonner</a>
     </mat-card>
 </main>

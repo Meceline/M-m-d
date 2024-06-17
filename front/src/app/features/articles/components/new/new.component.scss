@@ -1,0 +1,25 @@
+
+h1{
+  width: 100%;
+  text-align: center;
+  margin: 50px auto;
+}
+.article-form {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    margin: 0 auto;
+  
+    .form-field {
+      margin-bottom: 20px;
+    }
+  
+    button {
+      align-self: flex-end;
+    }
+  
+    @media (max-width: 600px) {
+      width: 100%;
+    }
+  }
+  

@@ -35,22 +35,19 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (this.formControls["emailOrUsername"].valid  && this.formControls['password'].valid) {
-      console.log('login');
+   
       const loginRequest: LoginRequest = {
         emailOrUserName: this.formControls['emailOrUsername'].value,
         password: this.formControls['password'].value,
       };
-  console.log(loginRequest);
+
       this.subscription = this.authService.login(loginRequest).subscribe({
           next: (data) => {
-            console.log("ok ", data)
             localStorage.setItem('token', data.token);
             this.userService.isLoggedIn();
-            this.router.navigate(['/articles']); //Article component
+            this.router.navigate(['/articles']);
           },
           error: (error) => {
-            console.error('Erreur de connection:', error); 
-            // Afficher un message d'erreur  à l'utilisateur
             this.errorMessage = error.message;
           }
         });

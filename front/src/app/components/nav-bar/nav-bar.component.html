@@ -6,16 +6,14 @@
     <ul class="nav-links">
       <li><a routerLink="/articles" routerLinkActive='active'>Articles</a></li>
       <li><a routerLink="/themes" routerLinkActive='active'>Thèmes</a></li>
-      <li><a (click)="logout()">Logout</a></li>
-      <li><a routerLink="/profil"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="face"></mat-icon></a></li>
+      <li><a routerLink="/userProfile"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="face"></mat-icon></a></li>
     </ul>
 </nav>
 <div class="sidebar" [class.open]="menuOpen">
     <ul>
       <li><a routerLink="/articles" (click)="closeMenu()" routerLinkActive='active'>Articles</a></li>
       <li><a routerLink="/themes" (click)="closeMenu()" routerLinkActive='active'>Thèmes</a></li>
-      <li><a (click)="logout()">Logout</a></li>
-      <li><a routerLink="/profil" (click)="closeMenu()"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="face"></mat-icon></a></li>
+      <li><a routerLink="/userProfile" (click)="closeMenu()"><mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="face"></mat-icon></a></li>
     </ul>
 </div>
 <div class="overlay" *ngIf="menuOpen" (click)="closeMenu()"></div>

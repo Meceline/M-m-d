@@ -21,9 +21,5 @@ export class NavBarComponent {
     this.menuOpen = false;
   }
 
-  logout() {
-    this.userService.logout();
-    this.router.navigate(['/login']);
-  }
 
 }

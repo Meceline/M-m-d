@@ -5,7 +5,6 @@
 
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
         <h2>Se connecter</h2>
-        <p>Erreur : {{errorMessage}}</p>
 
         <label>E-mail ou nom d'utilisateur</label>
         <mat-form-field appearance="outline">
@@ -17,7 +16,7 @@
         <input type="password" matInput [formControl]="formControls['password']" >
         </mat-form-field>
 
-        <button type="submit"  [disabled]="formControls['emailOrUsername'].invalid || formControls['password'].invalid" mat-raised-button color="primary">S'inscrire</button>
+        <button type="submit"  [disabled]="formControls['emailOrUsername'].invalid || formControls['password'].invalid" mat-raised-button color="primary">Connecter</button>
     </form>
 </main>
 

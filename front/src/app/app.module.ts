@@ -22,6 +22,7 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { NewComponent } from './features/articles/components/new/new.component';
 import { DetailsComponent } from './features/articles/components/details/details.component';
 import { ListComponent } from './features/themes/components/list/list.component';
+import { UserProfileComponent } from './components/user-profil/user-profil.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ListComponent } from './features/themes/components/list/list.component'
     NewComponent,
     DetailsComponent,
     ListComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

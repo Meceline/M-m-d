@@ -19,9 +19,15 @@ export class ArticleService {
   getArticleById(id: number): Observable<Article> {
     return this.http.post<Article>(`${this.apiUrl}/articles/${id}`, {});
   }
-
-  createComment(newComment: { articleId: number; content: string }): Observable<Comment> {
-    return this.http.post<Comment>(`${this.apiUrl}/comments`, newComment);
+  getCommentsByArticleId(id: number): Observable<Comment[]> {
+    return this.http.get<Comment[]>(`${this.apiUrl}/comments/${id}`);
+  }
+  
+  postComment(newComment: { article_id: number; content: string }): Observable<Comment[]> {
+    return this.http.post<Comment[]>(`${this.apiUrl}/comments`, newComment);
   }
 
+  postArticle(newArticle: {themeId: number, title: string; content: string }): Observable<Article> {
+    return this.http.post<Article>(`${this.apiUrl}/articles/new`, newArticle);
+  }
 }

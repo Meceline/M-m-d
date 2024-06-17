@@ -28,7 +28,7 @@ export class RegisterComponent {
   controlNames: { [key: string]: string } = {
     userName: 'Le nom d\'utilisateur doit avoir au moins 2 caractères',
     email: 'L\'adresse mail doit avoir un format valide',
-    password: 'Le mot de passe avec au moins 8 caractères, dont 1 lettre majuscule, 1 lettre minuscule, 1 chiffre et 1 caractère spécial',
+    password: 'Le mot de passe doit avoir au moins 8 caractères, dont 1 lettre majuscule, 1 lettre minuscule, 1 chiffre et 1 caractère spécial',
   };
 
   errorMessages: { [key: string]: string } = {
@@ -57,7 +57,7 @@ export class RegisterComponent {
     const control = this.formControls[controlName];
     control.markAsTouched();
     if (control.hasError('required')) {
-      this.errorMessages[controlName] = `Veuillez saisir ${this.controlNames[controlName]}`;
+      this.errorMessages[controlName] = `${this.controlNames[controlName]}`;
     } else if (control.hasError('pattern')) {
       this.errorMessages[controlName] = 'Le mot de passe ne réponds pas aux exigences';
     } else {
@@ -66,7 +66,6 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
-    console.log("register")
       if (this.formControls["userName"].valid && this.formControls['email'].valid && this.formControls['password'].valid) {
       const registerRequest: RegisterRequest = {
         userName: this.formControls['userName'].value,
@@ -76,12 +75,10 @@ export class RegisterComponent {
       
       this.subscription = this.authService.register(registerRequest).subscribe({
         next: (data) => {
-          console.log("ok ", data)
           localStorage.setItem('token', data.token);
           this.router.navigate(['/articles']); 
         },
         error: (error) => {
-          console.error('Erreur d\'inscription:', error);
           this.errorMessages['userName'] = 'Erreur lors de l\'inscription.';
         }
       });

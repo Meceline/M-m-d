@@ -6,7 +6,7 @@ import { UserService } from '../services/user-service.service';
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
 
-  constructor(private userService: UserService, private router: Router,) { }
+  constructor(private userService: UserService, private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -14,10 +14,8 @@ export class AuthGuard implements CanActivate {
     if (this.userService.isLoggedIn()) {
       return true;
     } else {
-      // Redirige l'utilisateur vers la page d'accueil s'il n'est pas authentifié
       this.router.navigate(['/home']);
       return false;
     }
   }
-
 }

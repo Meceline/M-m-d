@@ -12,6 +12,7 @@ import { NewComponent } from './features/articles/components/new/new.component';
 import { DetailsComponent } from './features/articles/components/details/details.component';
 
 import { ListComponent as ThemeListComponent} from './features/themes/components/list/list.component';
+import { UserProfileComponent } from './components/user-profil/user-profil.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -25,11 +26,14 @@ const routes: Routes = [
       { path: 'articles', component: ArticleListComponent },
       { path: 'articles/new', component: NewComponent },
       { path: 'articles/:id', component: DetailsComponent },
-      { path: 'themes', component: ThemeListComponent }
+      { path: 'themes', component: ThemeListComponent },
+      { path: 'userProfile', component: UserProfileComponent },
+      { path: '', redirectTo: '/articles', pathMatch: 'full' }, 
+     
     ]
   },
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: '**', redirectTo: '/home' }
+  
+ 
 ];
 
 

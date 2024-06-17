@@ -1,0 +1,24 @@
+<div class="main">
+  <h2>Profil utilisateur</h2>
+  <form (ngSubmit)="onSave()">
+    <div class="form-group">
+        <input id="username" [(ngModel)]="user.username" name="username" class="form-control" required>
+    </div>
+    <div class="form-group">
+        <input id="email" type="email" [(ngModel)]="user.email" name="email" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    <button type="button" class="btn btn-danger" (click)="onLogout()">Se déconnecter</button>
+  </form>
+  <hr>
+  <h2>Abonnements</h2>
+  <div class="subscriptions" *ngFor="let theme of themes">
+    <mat-card *ngIf="subscribedThemes.has(theme.id)">
+      <div  class="card">
+        <h3>{{ theme.title }}</h3>
+        <p>{{ theme.description }}</p>
+        <button class="btn btn-secondary" (click)="unsubscribe(theme.id)">Se désabonner</button>
+      </div>
+    </mat-card>
+  </div>
+</div> 

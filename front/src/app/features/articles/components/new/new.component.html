@@ -1,1 +1,25 @@
-<p>new works!</p>
+<h1>Créer un nouvel article</h1>
+<form (ngSubmit)="onSubmit()" class="article-form">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Sélectionner un thème</mat-label>
+      <mat-select [formControl]="formControls['theme']"  [(ngModel)]="article.themeId" name="themeId" required>
+        <mat-option *ngFor="let theme of themes" [value]="theme.id">{{ theme.title }}</mat-option>
+      </mat-select>
+      <mat-error *ngIf="formControls['theme'].invalid && formControls['theme'].touched">{{errorMessages['theme']}}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Titre de l'article</mat-label>
+      <input matInput [formControl]="formControls['title']"  [(ngModel)]="article.title" name="title" required>
+      <mat-error *ngIf="formControls['title'].invalid && formControls['title'].touched">{{errorMessages['title']}}</mat-error>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Contenu de l'article</mat-label>
+      <textarea [formControl]="formControls['content']"  matInput rows="6" [(ngModel)]="article.content" name="content" required></textarea>
+      <mat-error *ngIf="formControls['content'].invalid && formControls['content'].touched">{{errorMessages['content']}}</mat-error>
+    </mat-form-field>
+    
+    <button mat-raised-button [disabled]="formControls['theme'].invalid || formControls['title'].invalid || formControls['content'].invalid" color="primary" type="submit">Créer</button>
+  </form>
+  
