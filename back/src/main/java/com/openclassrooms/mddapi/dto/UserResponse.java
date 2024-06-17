@@ -1,6 +1,8 @@
 package com.openclassrooms.mddapi.dto;
 
 
+import com.openclassrooms.mddapi.models.User;
+
 import java.util.Date;
 
 public class UserResponse {

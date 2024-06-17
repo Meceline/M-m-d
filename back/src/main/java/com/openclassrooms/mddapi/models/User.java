@@ -93,4 +93,5 @@ public class User {
     public void setUpdated_at(Date updated_at) {
         this.updated_at = updated_at;
     }
+
 }
