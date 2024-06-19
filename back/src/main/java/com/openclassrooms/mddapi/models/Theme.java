@@ -29,7 +29,6 @@ public class Theme {
     @JsonBackReference
     private List<User> users;
 
-
     public List<User> getUsers() {
         return users;
     }

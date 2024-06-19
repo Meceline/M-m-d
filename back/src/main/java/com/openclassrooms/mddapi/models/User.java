@@ -39,7 +39,6 @@ public class User {
     @JsonManagedReference
     private List<Theme> themes;
 
-
     public List<Theme> getThemes() {
         return themes;
     }

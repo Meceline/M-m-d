@@ -15,7 +15,6 @@ public class ThemeService {
 
     public Iterable<Theme> getAllTheme(){
         return themeRepository.findAll();
-
     }
 
     public Optional<Theme> getThemeById(Long theme_id){

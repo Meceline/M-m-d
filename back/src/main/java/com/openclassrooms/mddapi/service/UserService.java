@@ -30,7 +30,6 @@ public class UserService {
     @Autowired
     private ThemeRepository themeRepository;
 
-
     public User register(RegisterRequest registerRequest) {
         User user = new User();
         user.setEmail(registerRequest.getEmail());
@@ -111,20 +110,20 @@ public class UserService {
         userResponse.setUpdated_at(user.getUpdated_at());
         return userResponse;
     }
-public UserResponse updateUserProfile(Long id, UserResponse userResponseSend) {
-    User user = userRepository.findById(id)
-            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
-    user.setUsername(userResponseSend.getUsername());
-    user.setEmail(userResponseSend.getEmail());
-    user.setUpdated_at(new Date());
-    User updatedUser = userRepository.save(user);  // Met à jour l'utilisateur et récupère l'utilisateur mis à jour
+    // Met à jour l'utilisateur et récupère l'utilisateur mis à jour
+    public UserResponse updateUserProfile(Long id, UserResponse userResponseSend) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        user.setUsername(userResponseSend.getUsername());
+        user.setEmail(userResponseSend.getEmail());
+        user.setUpdated_at(new Date());
+        User updatedUser = userRepository.save(user);
 
-    UserResponse userResponse = new UserResponse();
-    userResponse.setEmail(updatedUser.getEmail());
-    userResponse.setUsername(updatedUser.getUsername());
-    return userResponse;
-}
-
+        UserResponse userResponse = new UserResponse();
+        userResponse.setEmail(updatedUser.getEmail());
+        userResponse.setUsername(updatedUser.getUsername());
+        return userResponse;
+    }
 
     public User getUserById(Long id){
         return userRepository.findById(id).get();

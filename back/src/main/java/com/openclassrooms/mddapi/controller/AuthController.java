@@ -23,7 +23,6 @@ public class AuthController {
     @Autowired
     private JWTService jwtService;
 
-    /*@CrossOrigin(origins = "http://localhost:4200")*/
     @PostMapping("/auth/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest registerRequest){
         try {

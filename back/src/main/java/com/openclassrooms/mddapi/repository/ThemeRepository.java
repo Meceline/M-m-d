@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ThemeRepository extends CrudRepository<Theme, Long> {
-    Theme findByTitle(String title);
+    //Theme findByTitle(String title);
 
 }

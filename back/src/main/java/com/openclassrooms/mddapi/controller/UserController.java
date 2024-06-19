@@ -13,7 +13,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -46,11 +45,8 @@ public class UserController {
 
     @PostMapping("/themes/{theme_id}")
     public ResponseEntity<?> subscribeToTheme(@PathVariable("theme_id") Long themeId) {
-        System.out.println(themeId);
-        System.out.println(getUserFromAuthentication().getUsername());
         try {
             UserResponse userResponse = getUserFromAuthentication();
-            System.out.println(userResponse.getUsername());
             userService.subscribeTheme(themeId, userResponse);
             return ResponseEntity.ok().build();
         } catch (EntityNotFoundException e) {
@@ -92,8 +88,6 @@ public class UserController {
         UserResponse user = userService.getUserProfile(userResponse.getId());
         return ResponseEntity.ok(user);
     }
-
-
 
     @PutMapping("/users/profil")
     public ResponseEntity<UserResponse> updateUserProfile(@RequestBody UserResponse userResponse) {

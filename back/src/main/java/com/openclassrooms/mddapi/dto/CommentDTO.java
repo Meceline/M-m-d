@@ -1,17 +1,12 @@
 package com.openclassrooms.mddapi.dto;
 
-import com.openclassrooms.mddapi.models.Article;
-
 import java.util.Date;
 
 public class CommentDTO {
     private Long id;
     private Long article_id;
-
     private String content;
-
     private Long user_id;
-
     private String username;
     private Date created_at;
     private Date updated_at;

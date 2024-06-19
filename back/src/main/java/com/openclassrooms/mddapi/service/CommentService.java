@@ -32,7 +32,6 @@ public class CommentService {
     @Autowired
     private UserRepository userRepository;
     public Iterable<Comment> save(CommentDTO commentRequest) throws Exception {
-
         Comment comment = new Comment();
         Optional<Article> optionalArticle = articleRepository.findById(commentRequest.getArticle_id());
         if (optionalArticle.isEmpty()) {

@@ -1,7 +1,6 @@
 package com.openclassrooms.mddapi.controller;
 
 import com.openclassrooms.mddapi.dto.ArticleDTO;
-import com.openclassrooms.mddapi.dto.UserResponse;
 import com.openclassrooms.mddapi.models.Article;
 import com.openclassrooms.mddapi.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class ArticleController {
         return ResponseEntity.ok(articles);
     }
 
-    @PostMapping("/articles/{id}")
+    @GetMapping("/articles/{id}")
     public ResponseEntity<?> getArticleById(@PathVariable("id") final String id_string){
         try {
             Long id = Long.parseLong(id_string);
@@ -42,18 +41,17 @@ public class ArticleController {
         }
     }
 
-@PostMapping("/articles/new")
-public ResponseEntity<?> createArticle(@RequestBody ArticleDTO articleDTO) {
-        System.out.println(articleDTO.getThemeId() + " - " + articleDTO.getTitle() + " - " + articleDTO.getContent());
-    try {
-        articleService.addArticle(articleDTO.getThemeId(), articleDTO.getTitle(), articleDTO.getContent());
-        return ResponseEntity.ok(Collections.singletonMap("message", "Article created!"));
-    } catch (IllegalArgumentException e) {
-        return ResponseEntity.badRequest().body(e.getMessage());
-    }  catch (Exception e) {
-        return handleServerError(e);
+    @PostMapping("/articles/new")
+    public ResponseEntity<?> createArticle(@RequestBody ArticleDTO articleDTO) {
+        try {
+            articleService.addArticle(articleDTO.getThemeId(), articleDTO.getTitle(), articleDTO.getContent());
+            return ResponseEntity.ok(Collections.singletonMap("message", "Article created!"));
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }  catch (Exception e) {
+            return handleServerError(e);
+        }
     }
-}
 
 
 

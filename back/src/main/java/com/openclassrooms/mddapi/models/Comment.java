@@ -3,7 +3,6 @@ package com.openclassrooms.mddapi.models;
 import jakarta.persistence.*;
 
 import java.util.Date;
-import java.util.Optional;
 
 @Entity
 @Table(name = "COMMENTS")
