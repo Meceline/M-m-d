@@ -44,15 +44,12 @@ export class UserProfileComponent implements OnInit {
     }
   
     loadUserProfile(): void {
-      console.log("loaduserprofil")
         this.userProfilService.getUserProfile().subscribe({
           
         next: (user: User) => {
-          console.log("subscribe")  
           this.user = user;
         },
         error: (error) => {
-          console.log("error")
           console.error('Erreur : ', error);
         }
       });
@@ -61,7 +58,6 @@ export class UserProfileComponent implements OnInit {
     onSave(): void {
         this.userProfilService.updateUserProfile(this.user).subscribe({
           next: (updatedUser: User) => {
-            //this.loadUserProfile();
             console.log('Profil mis à jour');
           },
           error: (error) => {

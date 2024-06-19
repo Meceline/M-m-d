@@ -3,8 +3,9 @@
         <a mat-raised-button color="primary" routerLink="/articles/new">Créer un article</a>
         <p (click)="toggleSortOrder()">Triez par <mat-icon aria-hidden="false" fontIcon="arrow_downward"></mat-icon></p>
     </div>
-
-    <a *ngFor="let article of articles" [routerLink]="['/articles', article.id]">
+    
+    <ng-container *ngFor="let article of articles" >
+        <a *ngIf="subscribedThemes.has(article.theme.id)" [routerLink]="['/articles', article.id]">
         <mat-card class="card">
             <mat-card-title><b>{{article.title}}</b></mat-card-title>
             <div class="subtitle-container">
@@ -14,4 +15,6 @@
             <mat-card-content>Content : {{truncateText(article.content, 300)}}</mat-card-content>
         </mat-card>
     </a>
+    </ng-container>
+    
 </main>

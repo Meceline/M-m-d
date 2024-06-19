@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ArticleService } from '../../services/article-service.service';
 import { Subscription } from 'rxjs';
 import { Article } from '../../interfaces/article';
+import { ThemeService } from 'src/app/features/themes/services/theme.service';
+import { Theme } from 'src/app/features/themes/interfaces/theme';
 
 @Component({
   selector: 'app-list',
@@ -13,9 +15,13 @@ export class ListComponent implements OnInit, OnDestroy {
   private subscription: Subscription | undefined;
   articles: Article[] = [];
   isAscending: boolean = true; 
-  constructor(private articlesService: ArticleService, private router: Router) {}
+  subscribedThemes: Set<number> = new Set<number>();
+
+
+  constructor(private articlesService: ArticleService, private router: Router, private themeService: ThemeService, ) {}
 
   ngOnInit(): void {
+    this.loadSubscribedThemes();
     this.subscription = this.articlesService.getAllArticles().subscribe({
       next: (data: any[]) => {
         this.articles = data.map(item => ({
@@ -61,4 +67,17 @@ export class ListComponent implements OnInit, OnDestroy {
       return 0;
     });
   }
+
+  loadSubscribedThemes(): void {
+    this.themeService.getSubscribedThemes().subscribe({
+      next: (data: Theme[]) => {
+        this.subscribedThemes = new Set(data.map(theme => theme.id));
+        console.log(this.subscribedThemes)
+      },
+      error: (error) => {
+        console.error('Erreur : ', error);
+      }
+    });
+  }
+
 }

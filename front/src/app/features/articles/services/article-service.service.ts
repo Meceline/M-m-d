@@ -17,7 +17,7 @@ export class ArticleService {
   }
 
   getArticleById(id: number): Observable<Article> {
-    return this.http.post<Article>(`${this.apiUrl}/articles/${id}`, {});
+    return this.http.get<Article>(`${this.apiUrl}/articles/${id}`, {});
   }
   getCommentsByArticleId(id: number): Observable<Comment[]> {
     return this.http.get<Comment[]>(`${this.apiUrl}/comments/${id}`);
