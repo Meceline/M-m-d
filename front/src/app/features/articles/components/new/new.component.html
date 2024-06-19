@@ -20,6 +20,6 @@
       <mat-error *ngIf="formControls['content'].invalid && formControls['content'].touched">{{errorMessages['content']}}</mat-error>
     </mat-form-field>
     
-    <button mat-raised-button [disabled]="formControls['theme'].invalid || formControls['title'].invalid || formControls['content'].invalid" color="primary" type="submit">Créer</button>
+    <button mat-raised-button color="primary" [disabled]="formControls['theme'].invalid || formControls['title'].invalid || formControls['content'].invalid" color="primary" type="submit">Créer</button>
   </form>
   

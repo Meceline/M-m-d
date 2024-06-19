@@ -32,7 +32,6 @@ nav {
 .nav-links a {
     text-decoration: none;
     color: #333;
-    //font-weight: bold;
 }
 
 .sidebar {
@@ -45,7 +44,10 @@ nav {
     box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     transition: right 0.3s;
     z-index: 1000;
-    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 20px;
 }
 
 .sidebar.open {
@@ -56,6 +58,7 @@ nav {
     list-style: none;
     padding: 0;
     margin: 0;
+    flex-grow: 1;
 }
 
 .sidebar li {
@@ -68,6 +71,10 @@ nav {
     font-weight: bold;
 }
 
+.user-icon {
+    align-self: left;
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -77,6 +84,7 @@ nav {
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 999;
 }
+
 .active {
     color: #6200ea !important;
 }

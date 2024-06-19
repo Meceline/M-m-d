@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../services/auth-service';
-import { LoginRequest } from '../interfaces/LoginRequest'; // Import the LoginRequest type
+import { LoginRequest } from '../interfaces/LoginRequest'; 
 import { UserService } from '../services/user-service.service';
 
 @Component({

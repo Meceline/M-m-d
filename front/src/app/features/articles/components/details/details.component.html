@@ -1,5 +1,4 @@
-
- <main class="flex-template-layout relative">
+<!-- <main class="flex-template-layout relative">
     <a routerLink="/articles" class="return-link">
         <div class="header-container">
             <mat-icon aria-hidden="false" aria-label="retour" fontIcon="arrow_back"></mat-icon>
@@ -34,6 +33,51 @@
     <form *ngIf="article" (ngSubmit)="onSubmitComment()" class="comment-form">
         <mat-form-field appearance="outline" class="comment-field" [ngClass]="{'mat-form-field-invalid': formControls['content'].invalid && formControls['content'].dirty}">
           <mat-label>Ecrivez ici votre message</mat-label>
+          <textarea matInput rows="2" [formControl]="formControls['content']"></textarea>
+          <mat-error *ngIf="formControls['content'].invalid && formControls['content'].dirty">{{errorMessages['content']}}</mat-error>
+        </mat-form-field>
+        <button type="submit" class="submit-button" [disabled]="formControls['content'].invalid">
+          <mat-icon aria-hidden="false" aria-label="envoyer" fontIcon="send" color="primary"></mat-icon>
+        </button>
+    </form>
+</main> -->
+
+
+<main class="flex-template-layout relative">
+    <a routerLink="/articles" class="return-link">
+        <div class="header-container">
+            <mat-icon aria-hidden="false" aria-label="retour" fontIcon="arrow_back"></mat-icon>
+            <h1 *ngIf="article">{{ article.title }}</h1>
+        </div>
+    </a>
+   
+    <div *ngIf="article">
+        <div class="article-details">
+            <div>
+                <p>Date {{ article.created_at | date }}</p>
+                <p>Author {{ article.user.username }}</p>
+                <p>Thème {{ article.theme.title }}</p>
+            </div>
+        </div>
+
+        <div class="content">
+            <p>{{ article.content }}</p>
+        </div>
+
+        <mat-divider></mat-divider>
+        
+        <div *ngIf="comments && comments.length > 0">
+            <p>Commentaires</p>
+            <div *ngFor="let item of comments" class="comment-container">
+                <p>{{ item.user.username }}</p>
+                <p>{{ item.content }}</p>
+            </div>
+        </div>
+    </div>
+
+    <form *ngIf="article" (ngSubmit)="onSubmitComment()" class="comment-form">
+        <mat-form-field appearance="outline" class="comment-field" [ngClass]="{'mat-form-field-invalid': formControls['content'].invalid && formControls['content'].dirty}">
+          <mat-label>Ecrivez ici votre commentaire</mat-label>
           <textarea matInput rows="2" [formControl]="formControls['content']"></textarea>
           <mat-error *ngIf="formControls['content'].invalid && formControls['content'].dirty">{{errorMessages['content']}}</mat-error>
         </mat-form-field>

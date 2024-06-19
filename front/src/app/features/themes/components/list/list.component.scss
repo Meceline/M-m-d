@@ -4,7 +4,6 @@ main {
     margin: 50px;
 }
 
-
 mat-card {
     margin: 20px auto;
     padding: 20px;
@@ -12,12 +11,14 @@ mat-card {
     width: 45%;
 }
 
-
-a{
-    width: 25%;
+a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%; 
     margin: auto;
+    white-space: nowrap; 
 }
-
 
 @media screen and (max-width: 800px) {
     main {
